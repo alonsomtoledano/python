@@ -90,13 +90,13 @@ Choose a character by his identification number shown in [1] List all characters
             if not characterInfo:
                 fetchData(url + endpointCharacter + '/' + userResponse, characterInfo)
 
-                if characterInfo[len(characterInfo) - 1]['name']: print('\nName: ' + characterInfo[len(characterInfo) - 1]['name'], end='')
-                if characterInfo[len(characterInfo) - 1]['status']: print('\nStatus: ' + characterInfo[len(characterInfo) - 1]['status'], end='')
-                if characterInfo[len(characterInfo) - 1]['species']: print('\nSpecies: ' + characterInfo[len(characterInfo) - 1]['species'], end='')
-                if characterInfo[len(characterInfo) - 1]['type']: print('\nType: ' + characterInfo[len(characterInfo) - 1]['type'], end='')
-                if characterInfo[len(characterInfo) - 1]['gender']: print('\nGender: ' + characterInfo[len(characterInfo) - 1]['gender'], end='')
-                if characterInfo[len(characterInfo) - 1]['origin']: print('\nOrigin: ' + characterInfo[len(characterInfo) - 1]['origin'], end='')
-                if characterInfo[len(characterInfo) - 1]['location']: print('\nLocation: ' + characterInfo[len(characterInfo) - 1]['location'])
+                if characterInfo[0]['name']: print('\nName: ' + characterInfo[0]['name'], end='')
+                if characterInfo[0]['status']: print('\nStatus: ' + characterInfo[0]['status'], end='')
+                if characterInfo[0]['species']: print('\nSpecies: ' + characterInfo[0]['species'], end='')
+                if characterInfo[0]['type']: print('\nType: ' + characterInfo[0]['type'], end='')
+                if characterInfo[0]['gender']: print('\nGender: ' + characterInfo[0]['gender'], end='')
+                if characterInfo[0]['origin']: print('\nOrigin: ' + characterInfo[0]['origin'], end='')
+                if characterInfo[0]['location']: print('\nLocation: ' + characterInfo[0]['location'])
             
             else:
                 characterExist = False
