@@ -9,7 +9,8 @@ endpointCharacter = '/character'
 
 ########## API RESPONSE VARIABLES ##########
 
-userResponse = ''
+menuResponse = '' #Variable to manage user response in the menu
+userResponse = '' #Variable to manage user response in the rest of the program
 
 characterList = [] #List to append character info
 allCharacterInfo = False #Contol variable to detect if all character info are gathered
@@ -25,8 +26,17 @@ def fetchData(url, listName): #Function parameters --> url: API url, listName: l
         if response.get('results'): #If 'results' exist means the response from the API is all character's list
             for item in response.get('results'):
                 listName.append({ #Apped data to the list
+                    #'id': item.get('id'),
+                    #'name': item.get('name')
+
                     'id': item.get('id'),
-                    'name': item.get('name')
+                    'name': item.get('name'),
+                    'status': item.get('status'),
+                    'species': item.get('species'),
+                    'type': item.get('type'),
+                    'gender': item.get('gender'),
+                    'origin': item.get('origin').get('name'),
+                    'location': item.get('location').get('name')
                 })
             
             if response.get('info').get('next'): #As the API respond is paginated, if there is another page
@@ -52,20 +62,21 @@ def fetchData(url, listName): #Function parameters --> url: API url, listName: l
 
 print('\nWelcome to the Rick & Morty knoledge database')
 
-while userResponse != '5': #Menu loop
+while menuResponse != '4': #Menu loop
     print('''
 What do you want to do?
 
 [1] List all characters
 [2] Show character info
-[5] Exit
+[3] Clear memory
+[4] Exit
 ''')
 
-    userResponse = input()
+    menuResponse = input()
 
     #_________ OPTION 1 - LIST ALL CHARACTERS _________#
 
-    if userResponse == '1':
+    if menuResponse == '1':
         if not characterList: #If characterList list is empty
             fetchData(url + endpointCharacter, characterList) #Call API fetchData with --> API url with characters endpoint, and characterList to apped the data
         
@@ -81,7 +92,7 @@ What do you want to do?
         
     #_________ OPTION 2 - SHOW CHARACTER INFO _________#
     
-    elif userResponse == '2':
+    elif menuResponse == '2':
         
         print('''
 Choose a character by his identification number shown in [1] List all characters.
@@ -109,34 +120,33 @@ Choose a character by his identification number shown in [1] List all characters
                 if characterList[0]['location']: print('\nLocation: ' + characterList[0]['location'])
             
             else: #If characterList is not empty
-                if allCharacterInfo: #All character info are already gathered
-                    break #ya esta toda la lista, por lo que hay que buscar en ella
+                #if allCharacterInfo: #All character info are already gathered
 
-                else: #All character info are not gathered
-                    characterExist = False #Flag to see if character where already searched
+                #else: #All character info are not gathered
+                characterExist = False #Flag to see if character where already searched
 
-                    for item in characterList: #Search character in the list
-                        if str(item['id']) == userResponse:
-                            characterExist = True #Character already searched
+                for item in characterList: #Search character in the list
+                    if str(item['id']) == userResponse:
+                        characterExist = True #Character already searched
 
-                            if item['name']: print('\nName: ' + item['name'], end='') #If Character parameter exists, print it
-                            if item['status']: print('\nStatus: ' + item['status'], end='')
-                            if item['species']: print('\nSpecies: ' + item['species'], end='')
-                            if item['type']: print('\nType: ' + item['type'], end='')
-                            if item['gender']: print('\nGender: ' + item['gender'], end='')
-                            if item['origin']: print('\nOrigin: ' + item['origin'], end='')
-                            if item['location']: print('\nLocation: ' + item['location'])
+                        if item['name']: print('\nName: ' + item['name'], end='') #If Character parameter exists, print it
+                        if item['status']: print('\nStatus: ' + item['status'], end='')
+                        if item['species']: print('\nSpecies: ' + item['species'], end='')
+                        if item['type']: print('\nType: ' + item['type'], end='')
+                        if item['gender']: print('\nGender: ' + item['gender'], end='')
+                        if item['origin']: print('\nOrigin: ' + item['origin'], end='')
+                        if item['location']: print('\nLocation: ' + item['location'])
 
-                    if not characterExist: #Character is not in the list
-                        fetchData(url + endpointCharacter + '/' + userResponse, characterList) #Call API fetchData with --> API url with the character id, and characterInfoList to apped the data
-                        
-                        if characterList[len(characterList) - 1]['name']: print('\nName: ' + characterList[len(characterList) - 1]['name'], end='') #If Character parameter exists, print it
-                        if characterList[len(characterList) - 1]['status']: print('\nStatus: ' + characterList[len(characterList) - 1]['status'], end='')
-                        if characterList[len(characterList) - 1]['species']: print('\nSpecies: ' + characterList[len(characterList) - 1]['species'], end='')
-                        if characterList[len(characterList) - 1]['type']: print('\nType: ' + characterList[len(characterList) - 1]['type'], end='')
-                        if characterList[len(characterList) - 1]['gender']: print('\nGender: ' + characterList[len(characterList) - 1]['gender'], end='')
-                        if characterList[len(characterList) - 1]['origin']: print('\nOrigin: ' + characterList[len(characterList) - 1]['origin'], end='')
-                        if characterList[len(characterList) - 1]['location']: print('\nLocation: ' + characterList[len(characterList) - 1]['location'])
+                if not characterExist: #Character is not in the list
+                    fetchData(url + endpointCharacter + '/' + userResponse, characterList) #Call API fetchData with --> API url with the character id, and characterInfoList to apped the data
+                    
+                    if characterList[len(characterList) - 1]['name']: print('\nName: ' + characterList[len(characterList) - 1]['name'], end='') #If Character parameter exists, print it
+                    if characterList[len(characterList) - 1]['status']: print('\nStatus: ' + characterList[len(characterList) - 1]['status'], end='')
+                    if characterList[len(characterList) - 1]['species']: print('\nSpecies: ' + characterList[len(characterList) - 1]['species'], end='')
+                    if characterList[len(characterList) - 1]['type']: print('\nType: ' + characterList[len(characterList) - 1]['type'], end='')
+                    if characterList[len(characterList) - 1]['gender']: print('\nGender: ' + characterList[len(characterList) - 1]['gender'], end='')
+                    if characterList[len(characterList) - 1]['origin']: print('\nOrigin: ' + characterList[len(characterList) - 1]['origin'], end='')
+                    if characterList[len(characterList) - 1]['location']: print('\nLocation: ' + characterList[len(characterList) - 1]['location'])
                     
         elif userResponse == '2': #Back to menu
             pass
@@ -144,9 +154,17 @@ Choose a character by his identification number shown in [1] List all characters
         else: #Introduce a valid option
             print('Introduce a valid option')
 
-    #_________ OPTION 5 - EXIT PROGRAM _________#
+    #_________ OPTION 3 - CLEAR MEMORY _________#
 
-    elif userResponse == '5':
+    elif menuResponse == '3':
+        characterList.clear() #Character list cleared
+        allCharacterInfo = False #Contol variable set to false
+
+        print('\nMemory cleared')
+
+    #_________ OPTION 4 - EXIT PROGRAM _________#
+
+    elif menuResponse == '4':
         print('\nGoodbye\n')
 
     else:
