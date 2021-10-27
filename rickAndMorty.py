@@ -26,9 +26,6 @@ def fetchData(url, listName): #Function parameters --> url: API url, listName: l
         if response.get('results'): #If 'results' exist means the response from the API is all character's list
             for item in response.get('results'):
                 listName.append({ #Apped data to the list
-                    #'id': item.get('id'),
-                    #'name': item.get('name')
-
                     'id': item.get('id'),
                     'name': item.get('name'),
                     'status': item.get('status'),
@@ -120,9 +117,6 @@ Choose a character by his identification number shown in [1] List all characters
                 if characterList[0]['location']: print('\nLocation: ' + characterList[0]['location'])
             
             else: #If characterList is not empty
-                #if allCharacterInfo: #All character info are already gathered
-
-                #else: #All character info are not gathered
                 characterExist = False #Flag to see if character where already searched
 
                 for item in characterList: #Search character in the list
