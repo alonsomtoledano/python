@@ -56,7 +56,7 @@ Choose a character by his identification number shown in [1] List all characters
         else: #Introduce a valid option
             print('Introduce a valid option')
 
-    #_________ OPTION 4 - EXIT PROGRAM _________#
+    #_________ OPTION 3 - EXIT PROGRAM _________#
 
     elif menuResponse == '3':
         print('\nGoodbye\n')
