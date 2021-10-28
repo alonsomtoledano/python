@@ -2,13 +2,12 @@ import requests
 
 ########## API PARAMETERS ##########
 
-url = 'https://rickandmortyapi.com/api'
-endpointCharacter = '/character'
+url = 'https://rickandmortyapi.com/api/'
+endpointCharacter = 'character/'
 
 ########## API RESPONSE VARIABLES ##########
 
 menuResponse = '' #Variable to manage user response in the menu
-userResponse = '' #Variable to manage user response in the rest of the program
 
 characterList = [] #List to append character info
 allCharacterInfo = False #Contol variable to detect if all character info are gathered
@@ -104,7 +103,7 @@ Choose a character by his identification number shown in [1] List all characters
             userResponse = input()
 
             if not characterList: #If characterList list is empty
-                fetchData(url + endpointCharacter + '/' + userResponse, characterList) #Call API fetchData with --> API url with the character id, and characterList to apped the data
+                fetchData(url + endpointCharacter + userResponse, characterList) #Call API fetchData with --> API url with the character id, and characterList to apped the data
 
                 if characterList[0]['name']: print('\nName: ' + characterList[0]['name'], end='') #If Character parameter exists, print it
                 if characterList[0]['status']: print('\nStatus: ' + characterList[0]['status'], end='')
@@ -130,7 +129,7 @@ Choose a character by his identification number shown in [1] List all characters
                         if item['location']: print('\nLocation: ' + item['location'])
 
                 if not characterExist: #Character is not in the list
-                    fetchData(url + endpointCharacter + '/' + userResponse, characterList) #Call API fetchData with --> API url with the character id, and characterInfoList to apped the data
+                    fetchData(url + endpointCharacter + userResponse, characterList) #Call API fetchData with --> API url with the character id, and characterInfoList to apped the data
                     
                     if characterList[len(characterList) - 1]['name']: print('\nName: ' + characterList[len(characterList) - 1]['name'], end='') #If Character parameter exists, print it
                     if characterList[len(characterList) - 1]['status']: print('\nStatus: ' + characterList[len(characterList) - 1]['status'], end='')
