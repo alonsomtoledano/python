@@ -1,6 +1,4 @@
 import requests
-import pprint
-import time
 
 ########## API PARAMETERS ##########
 
