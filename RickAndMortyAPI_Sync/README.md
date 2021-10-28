@@ -1,21 +1,16 @@
-#  Python repository
+#  🥒 RickAndMortyAPI_Sync
 ## 📝 Table of contents
 
 - Introduction
-- RickAndMortyAPI_Sync
-  - rickAndMorty<!---->.py
-  - rickAndMortySDK<!---->.py
-  - main<!---->.py
+- rickAndMorty<!---->.py
+- rickAndMortySDK<!---->.py
+- main<!---->.py
 
 ## 📔 Introduction
 
-Repository of projects made in python.
-
-## 🥒 RickAndMortyAPI_Sync
-
 Acquisition of data from Rick and Morty characters through synchronous requests to the [Rick and Morty API](https://rickandmortyapi.com/)
 
-### ◼️ rickAndMorty<!---->.py
+## ◼️ rickAndMorty<!---->.py
 
 Project with a menu where there are four options:
 - List all characters: shows the names of all the characters and their identifier
@@ -30,7 +25,7 @@ Project with a menu where there are four options:
  - Clear memory: all values ​​are stored in memory to make the least possible requests to the API to speed up the use of the application. This option clears the memory to collect the information again
  - Exit: Exit the program
 
-### ◼️ rickAndMortySDK<!---->.py
+## ◼️ rickAndMortySDK<!---->.py
 
 SDK based on the previous program where the main functions are encapsulated and can be used as a library. These are:
 
@@ -42,7 +37,7 @@ listAllCharacters()
 showCharacterInfo(id)
 ```
 
-### ◼️ main<!---->.py
+## ◼️ main<!---->.py
 Program where the library developed in the previous projects is used as follows:
 
 ```py

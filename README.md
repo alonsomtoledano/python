@@ -3,9 +3,6 @@
 
 - Introduction
 - RickAndMortyAPI_Sync
-  - rickAndMorty<!---->.py
-  - rickAndMortySDK<!---->.py
-  - main<!---->.py
 
 ## 📔 Introduction
 
