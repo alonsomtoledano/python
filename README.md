@@ -1,9 +1,11 @@
 #  Python repository
 ## 📝 Table of contents
 
-- Introduction
-- RickAndMortyAPI_Sync
-- PokeAPI_Async
+- [Python repository](#python-repository)
+  - [📝 Table of contents](#-table-of-contents)
+  - [📔 Introduction](#-introduction)
+  - [🥒 RickAndMortyAPI_Sync](#-rickandmortyapi_sync)
+  - [🔴 PokeAPI_Async](#-pokeapi_async)
 
 ## 📔 Introduction
 
