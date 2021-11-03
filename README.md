@@ -3,6 +3,7 @@
 
 - Introduction
 - RickAndMortyAPI_Sync
+- PokeAPI_Async
 
 ## 📔 Introduction
 
