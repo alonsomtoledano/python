@@ -1,6 +1,6 @@
 import requests
+import threading
 import time
-import random
 
 ########## API PARAMETERS ##########
 
@@ -21,12 +21,13 @@ def fetchData(url, listName, option, waitTime): #Function parameters --> url: AP
     response = requests.get(url).json() #Response from API
 
     if not response.get('error'): #If everything is correct calling the API
+        time.sleep(waitTime) #Wait stablished time
+
         if not option: #If not option means user want to fetch pokemon name data
             for item in response.get('pokemon_entries'):
                 listName.append(item.get('pokemon_species').get('name')) #Apped data to the list
             
-            time.sleep(waitTime) #Wait stablished time
-            print('\nPokemon names fetched') #Alert Pokemon names are fetched
+            print('\nPokemon names fetched\n') #Alert Pokemon names are fetched
 
         else: #If option means user want to fetch the game names
             numberOfGenerations = requests.get(url).json().get('count') #Response from API about number of generations
@@ -37,8 +38,7 @@ def fetchData(url, listName, option, waitTime): #Function parameters --> url: AP
                 for gameName in games:
                     gamesList.append(gameName.get('name')) #Apped data to the list
 
-            time.sleep(waitTime) #Wait stablished time
-            print('\nPokemon games fetched') #Alert Pokemon games are fetched
+            print('\nPokemon games fetched\n') #Alert Pokemon games are fetched
 
     else: #If something goes wrong calling the API
         print('\n' + response.get('error') + ', please try again' + '\n') #Print the error message
@@ -66,24 +66,30 @@ What do you want to do?
     if menuResponse == '1':
         print('\nAsking for Pokemon List')
 
-        waitTime = random.randint(5, 10) #Calculate random time to wait
+        waitTime = 10 #Set time to wait
 
         print('\nIt will be available in ' + str(waitTime) + ' seconds approximately')
 
-        fetchData(url + endpointPokedex, pokemonList, False, waitTime)  #Call API fetchData with --> API url with pokedex endpoint, pokemonList to apped the data,
-                                                                        #False to indicate the data to fetch, and waitTime
+        threadPokemon = threading.Thread(target=fetchData, args=(url + endpointPokedex, pokemonList, False, waitTime))  #Create a new thread with target fetchData funcion
+                                                                                                                        #with arugments: API url with pokedex endpoint,
+                                                                                                                        #pokemonList to apped the data, False to indicate
+                                                                                                                        #the data to fetch, and waitTime
+        threadPokemon.start() #Start thread
         
     #_________ OPTION 2 - REQUEST FOR POKEMON GAMES NAMES _________#
     
     elif menuResponse == '2':
         print('\nAsking for Pokemon Games List')
 
-        waitTime = random.randint(5, 10) #Calculate random time to wait
+        waitTime = 5 #Set time to wait
 
         print('\nIt will be available in ' + str(waitTime) + ' seconds approximately')
 
-        fetchData(url + endpointGames, gamesList, True, waitTime)   #Call API fetchData with --> API url with games endpoint, gamesList to apped the data,
-                                                                    #True to indicate the data to fetch, and waitTime
+        threadGames = threading.Thread(target=fetchData, args=(url + endpointGames, gamesList, True, waitTime)) #Create a newthread with target fetchData funcion
+                                                                                                                #with arugments: API url with games endpoint,
+                                                                                                                #gamesList to apped the data, True to indicate
+                                                                                                                #the data to fetch, and waitTime
+        threadGames.start() #Start thread
 
     #_________ OPTION 3 - CHECK REQUESTS LISTS _________#
 
