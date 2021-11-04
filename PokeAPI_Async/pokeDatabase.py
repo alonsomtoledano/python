@@ -65,9 +65,7 @@ What do you want to do?
 
     if menuResponse == '1':
         print('\nAsking for Pokemon List')
-
         waitTime = 10 #Set time to wait
-
         print('\nIt will be available in ' + str(waitTime) + ' seconds approximately')
 
         threadPokemon = threading.Thread(target=fetchData, args=(url + endpointPokedex, pokemonList, False, waitTime))  #Create a new thread with target fetchData funcion
@@ -80,9 +78,7 @@ What do you want to do?
     
     elif menuResponse == '2':
         print('\nAsking for Pokemon Games List')
-
         waitTime = 5 #Set time to wait
-
         print('\nIt will be available in ' + str(waitTime) + ' seconds approximately')
 
         threadGames = threading.Thread(target=fetchData, args=(url + endpointGames, gamesList, True, waitTime)) #Create a newthread with target fetchData funcion
